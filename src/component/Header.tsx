@@ -14,7 +14,7 @@ export default function Header() {
         <Navbar.Brand as={NavLink} to="/">
           Matrix Fakebook
         </Navbar.Brand>
-      </Container>
+      
       { user.username ? (
         <Nav.Item >
           <Nav.Link as={NavLink} to="/logout" className = 'mr-3'>
@@ -35,6 +35,7 @@ export default function Header() {
           </Nav.Item>
         </>
       )}
+      </Container>
     </Navbar>
   );
 }

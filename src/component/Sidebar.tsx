@@ -1,8 +1,13 @@
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import { NavLink } from 'react-router-dom'
+import { UserContext } from '../contexts/UserProvider'
 
 export default function Sidebar() {
+
+  const { user } = useContext(UserContext)
+  console.log(user)
+
   return (
     <Navbar sticky='top' className='sidebar flex-column'>
       <Nav.Item>
