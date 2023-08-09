@@ -2,6 +2,8 @@ import { useRef, FormEvent, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../contexts/UserProvider'
 
+// const baseApiUrl = import.meta.env.VITE_APP_BASE_API;
+
 export default function LoginForm() {
   const usernameField = useRef<HTMLInputElement>(null);
   const passwordField = useRef<HTMLInputElement>(null);

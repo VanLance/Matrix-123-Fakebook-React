@@ -17,10 +17,11 @@ function App() {
   const { user, setUser } = useContext(UserContext)
 
   useEffect(()=>{
+    console.log(localStorage.getItem('username'))
     if (!user.token && localStorage.getItem('token')){
       setUser({
-        username: localStorage.getItem('username')!,
-        token: localStorage.getItem('token')!
+        username: JSON.parse(localStorage.getItem('username')!),
+        token: JSON.parse(localStorage.getItem('token')!)
       })
     }
   },[])
