@@ -1,5 +1,6 @@
 import { FormEvent, useContext, useRef } from "react"
 import { UserContext } from "../contexts/UserProvider";
+import { useNavigate } from "react-router-dom";
 
 const baseApiUrl = import.meta.env.VITE_APP_BASE_API;
 
@@ -7,6 +8,7 @@ export default function MakePost() {
 
   const { user } = useContext(UserContext)
   const postField = useRef<HTMLInputElement>(null)
+  const navigate = useNavigate()
 
   async function handlePostData(e: FormEvent<HTMLFormElement>){
     e.preventDefault()
@@ -18,8 +20,8 @@ export default function MakePost() {
       },
       body: JSON.stringify({body: postField.current!.value})
     })
-    const data = await res.json()
-    console.log(data)
+    if(res.ok) navigate(`/user-page/${user.username}`)
+    else window.alert('Cannot Post')
   }
 
   return (
