@@ -5,7 +5,6 @@ import Posts from "./Posts";
 export default function UserPage() {
 
   const {username} = useParams()
-  console.log(username)
   return (
     <Body sidebar>
       <h2>{username}'s Page</h2>

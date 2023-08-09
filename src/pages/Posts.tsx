@@ -25,7 +25,7 @@ export default function Posts({ username }: { username: string }) {
         setPosts(data.posts);
       } else window.alert('Failed Call');
     })();
-  }, []);
+  }, [username]);
 
   return (
     <>

@@ -1,13 +1,19 @@
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/esm/Nav';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { UserContext } from '../contexts/UserProvider';
-import { useContext, useRef } from 'react';
+import { FormEvent, useContext, useRef } from 'react';
 
 export default function Header() {
   const { user } = useContext(UserContext);
   const usernameField = useRef<HTMLInputElement>(null)
+  const navigate = useNavigate()
+
+  function handleUserSearch(e:FormEvent<HTMLFormElement>):void{
+    e.preventDefault()
+    navigate(`/user-page/${usernameField.current!.value}`)
+  }
 
   return (
     <Navbar data-bs-theme="dark" sticky="top" className="header">
@@ -17,8 +23,8 @@ export default function Header() {
         </Navbar.Brand>
         {user.username ? (
           <>
-            <form>
-              <input type="text" placeholder="Search for User" ref={usernameField} />
+            <form onSubmit={handleUserSearch}>
+              <input type="text" placeholder="Search for User" ref={usernameField} required/>
               <button>Search</button>
             </form>
             <Nav.Item>
