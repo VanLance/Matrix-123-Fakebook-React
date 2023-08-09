@@ -13,7 +13,7 @@ export default function Body({ sidebar, children }: BodyProps) {
     <Container>
       <Stack direction="horizontal">
         {sidebar && <Sidebar />}
-        <Container>{children}</Container>
+        <Container className='content'>{children}</Container>
       </Stack>
     </Container>
   );

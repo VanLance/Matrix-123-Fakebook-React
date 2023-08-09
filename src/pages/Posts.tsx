@@ -5,10 +5,10 @@ import Spinner from 'react-bootstrap/esm/Spinner';
 
 const baseApiUrl = import.meta.env.VITE_APP_BASE_API;
 
-export default function Posts({username}: {username: string}) {
-  const [posts, setPosts] = useState<Array<Postable>>([]);
+export default function Posts({ username }: { username: string }) {
+  const [posts, setPosts] = useState<Array<Postable> | null>(null);
   const { user } = useContext(UserContext);
-  console.log(user)
+  console.log(user);
 
   useEffect(() => {
     (async () => {
@@ -23,7 +23,7 @@ export default function Posts({username}: {username: string}) {
         const data = await res.json();
         console.log(data);
         setPosts(data.posts);
-      } else window.alert('Failed Call')
+      } else window.alert('Failed Call');
     })();
   }, []);
 
@@ -31,12 +31,15 @@ export default function Posts({username}: {username: string}) {
     <>
       <h2>Posts</h2>
       <>
-        {posts.length !== 0 ?
+        {posts === null ? (
+          <Spinner animation="border" variant="info" />
+        ) : posts.length === 0 ? (
+          <p>User has made no posts</p>
+        ) : (
           posts.map((post: Postable, i: number) => {
             return <Post post={post} key={i} />;
-          }):
-          <Spinner animation="border" variant="info" />
-        }
+          })
+        )}
       </>
     </>
   );
