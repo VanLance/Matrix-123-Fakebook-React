@@ -9,9 +9,21 @@ import FormPage from './pages/FormPage';
 import LoginForm from './component/LoginForm';
 import RegisterForm from './component/RegisterForm';
 import Logout from './component/Logout';
+import { UserContext } from './contexts/UserProvider';
+import { useContext, useEffect } from 'react';
 
 function App() {
-  // const matrixStudents: Array<string> = [];
+
+  const { user, setUser } = useContext(UserContext)
+
+  useEffect(()=>{
+    if (!user.token && localStorage.getItem('token')){
+      setUser({
+        username: localStorage.getItem('username')!,
+        token: localStorage.getItem('token')!
+      })
+    }
+  },[])
 
   return (
     <Container fluid className="app">

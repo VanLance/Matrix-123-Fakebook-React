@@ -33,13 +33,22 @@ export default function LoginForm() {
     );
     if (res.ok) {
       const data = await res.json();
-      console.log(data);
       setUser({
-        username:usernameField.current!.value.toString(),
+        username:usernameField.current!.value,
         token: data.access_token
       })
+      updateUserState(usernameField.current!.value, data.access_token)
       resetForm()
     } else window.alert('Invalid UserData');
+  }
+
+  function updateUserState(username:string,token:string){
+    setUser({
+      username:username,
+      token: token
+    })
+    localStorage.setItem('token', JSON.stringify(token))
+    localStorage.setItem('username', JSON.stringify(username))
   }
 
   function resetForm(){
