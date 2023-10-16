@@ -29,3 +29,8 @@ body {
 .sidebar a:visited{
   color: blueviolet
 }
+
+.post-form{
+  align-self: flex-start;
+  margin-top: 10px;
+}

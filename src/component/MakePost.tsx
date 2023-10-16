@@ -25,7 +25,7 @@ export default function MakePost() {
   }
 
   return (
-    <form onSubmit={handlePostData}>
+    <form onSubmit={handlePostData} className="post-form">
       <label>Make Post: 
         <input type="text" placeholder="What's on your mind" ref={postField} required />
       </label>
