@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../contexts/UserProvider';
 
 export default function RegisterPage() {
-  const usernameField = useRef<HTMLInputElement>(null);
+  const usernameField = useRef<HTMLInputElement>(new HTMLInputElement());
   const passwordField = useRef<HTMLInputElement>(null);
   const verifyPasswordField = useRef<HTMLInputElement>(null);
   const emailField = useRef<HTMLInputElement>(null);
@@ -28,11 +28,11 @@ export default function RegisterPage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          username: usernameField.current!.value,
-          password: passwordField.current!.value,
+          username: usernameField.current.value,
+          password: passwordField.current?.value,
           email: emailField.current!.value,
-          first_name: firstNameField.current!.value,
-          last_name: lastNameField.current!.value,
+          first_name: firstNameField.current?.value,
+          last_name: lastNameField.current?.value,
         }),
       }
     );
